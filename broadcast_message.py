@@ -1,8 +1,8 @@
-from teleAPI import bot
+from teleAPI import bot, cancel
 
 def subscribe(user_id):
     flag = False
-    with open('resources/user_ids.txt', 'r+') as f:
+    with open('/root/sd/resources/user_ids.txt', 'r+', encoding='utf-8') as f:
         for line in f:
             if line == str(user_id) + '\n':
                 flag = True
@@ -12,9 +12,9 @@ def subscribe(user_id):
 
 
 # def unsubscribe(user_id, bot):
-#     with open("resources/user_ids.txt", "r") as fR:
+#     with open("/root/sd/resources/user_ids.txt", "r") as fR:
 #         lines = fR.readlines()
-#     with open("resources/user_ids.txt", 'w') as fW:
+#     with open("/root/sd/resources/user_ids.txt", 'w') as fW:
 #         for line in lines:
 #             if line.strip('\n') != str(user_id):
 #                 fW.write(line)
@@ -27,7 +27,16 @@ def write_message(message):
 
 
 def send_message(message):
-    with open('resources/user_ids.txt', 'r') as f:
-        user_ids = f.readlines()
-        for user_id in user_ids:
-            bot.copy_message(user_id, message.chat.id, message.message_id)
+    if message.text == "На главную":
+        cancel(message, True)
+    else:
+        with open('/root/sd/resources/user_ids.txt', 'r', encoding='utf-8') as f:
+            user_ids = f.readlines()
+            for user_id in user_ids:
+                try:
+                    bot.copy_message(user_id, message.chat.id, message.message_id)
+                except telebot.apihelper.ApiException as e:
+                    if e.result.status_code == 403:
+                        print(f"Пользователь {id} заблокировал вашего бота")
+                    else:
+                        print(f"Ошибка {e.result.status_code}: {e.result.json()}")
