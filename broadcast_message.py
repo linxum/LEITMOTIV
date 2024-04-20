@@ -1,4 +1,5 @@
 from teleAPI import bot, cancel
+import telebot
 
 def subscribe(user_id):
     flag = False

@@ -58,7 +58,7 @@ def write(message, age, city, univ, link):
                 """, (message.chat.id, link, city, age, univ, code, 0))
             cursor.execute("""INSERT INTO current_work (user_id, work_id) VALUES (%s, %s)""", (message.chat.id, 11))
             cursor.execute("""INSERT INTO refers (user_id, friend_user_id) VALUES (%s, %s)""", (message.chat.id, id[0]))
-            cursor.execute("""UPDATE users SET count_refer = count_refer + 1 WHERE user_id = %s""", (id[0],))
+            cursor.execute("""UPDATE users SET count_refer = count_refer + 10 WHERE user_id = %s""", (id[0],))
             
         else:
             msg = bot.send_message(message.chat.id, "Такого реферального кода не существует. Попробуй еще раз")
@@ -72,10 +72,3 @@ def write(message, age, city, univ, link):
         cursor.execute("""INSERT INTO current_work (user_id, work_id) VALUES (%s, %s)""", (message.chat.id, 11))
     conn.commit()
     start(message)
-
-# def print_user(message):
-#     with open("/root/sd/resources/stats.csv", "r", encoding="utf-8") as f:
-#         next(f)
-#         reader = csv.DictReader(f)
-#         for row in reader:
-#             bot.send_message(message.chat.id, f"Имя: {row['name']}, возраст: {row['age']}, город: {row['city']}")

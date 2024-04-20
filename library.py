@@ -1,4 +1,4 @@
-from teleAPI import bot, conn, get_current_lesson
+from teleAPI import bot, get_current_lesson
 import keyboards
 from telebot import types
 
@@ -8,8 +8,8 @@ library_back_button.add(types.InlineKeyboardButton("Назад", callback_data="
 materials_back_button = types.InlineKeyboardMarkup()
 materials_back_button.add(types.InlineKeyboardButton("Назад", callback_data="material_back"))
 
-library_1_list = ["-", "Кто такой саунд-дизайнер", "Урок 2", "Урок 3", "Урок 4"]
-library_2_list = ["-", "Урок 1", "Урок 2", "Урок 3", "Урок 4", "Урок 5", "Урок 6", "Урок 7", "Урок 8"]
+library_1_list = ["-", "Физика звука, психоакустика", "Цифровой звук", "Функционал DAW"]
+library_2_list = ["-", "Характеристики микса", "Урок 2", "Урок 3", "Урок 4", "Урок 5", "Урок 6", "Урок 7", "Урок 8"]
 library_3_list = ["-", "Урок 1", "Урок 2", "Урок 3", "Урок 4", "Урок 5", "Урок 6"]
 library_4_list = ["-", "Урок 1", "Урок 2", "Урок 3", "Урок 4"]
 
@@ -24,10 +24,10 @@ def library_1(message):
     keys = types.InlineKeyboardMarkup()
     count = get_current_lesson(message)
     if count // 10 == 1:
-        for i in range(1, min(count % 10 + 1, 5)):
+        for i in range(1, min(count % 10 + 1, 4)):
             keys.add(types.InlineKeyboardButton(library_1_list[i], callback_data=f"library_1{i}"))
     else:
-        for i in range(1, 5):
+        for i in range(1, 4):
             keys.add(types.InlineKeyboardButton(library_1_list[i], callback_data=f"library_1{i}"))
     keys.add(types.InlineKeyboardButton("Назад", callback_data="library_back"))
     bot.edit_message_text("Задачи саунд-дизайнера. Основы Звукорежиссуры", message.chat.id, message.message_id, reply_markup=keys)
@@ -38,16 +38,12 @@ def library_11(message):
     
 
 def library_12(message):
-    msg = "Урок 12"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_13(message):
-    msg = "Урок 13"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
-
-def library_14(message):
-    msg = "Урок 14"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_2(message):
     keys = types.InlineKeyboardMarkup()
@@ -59,39 +55,39 @@ def library_2(message):
         for i in range(1, 9):
             keys.add(types.InlineKeyboardButton(library_2_list[i], callback_data=f"library_2{i}"))
     keys.add(types.InlineKeyboardButton("Назад", callback_data="library_back"))
-    bot.edit_message_text("Ступень 2 / Микс-инженерия", message.chat.id, message.message_id, reply_markup=keys)
+    bot.edit_message_text("Основы и логика сведения и мастеринга. [Смотреть](https://vk.com/@leitmotiv_edu-o-kurse) учебную программу.", message.chat.id, message.message_id,  parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keys)
 
 def library_21(message):
-    msg = "Урок 21"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_22(message):
-    msg = "Урок 22"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_23(message):
-    msg = "Урок 23"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_24(message):
-    msg = "Урок 24"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_25(message):
-    msg = "Урок 25"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_26(message):
-    msg = "Урок 26"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_27(message):
-    msg = "Урок 27"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_28(message):
-    msg = "Урок 28"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_3(message):
     keys = types.InlineKeyboardMarkup()
@@ -106,28 +102,28 @@ def library_3(message):
     bot.edit_message_text("Ступень 3 / Синтез", message.chat.id, message.message_id, reply_markup=keys)
 
 def library_31(message):
-    msg = "Урок 31"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_32(message):
-    msg = "Урок 32"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_33(message):
-    msg = "Урок 33"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_34(message):
-    msg = "Урок 34"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_35(message):
-    msg = "Урок 35"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_36(message):
-    msg = "Урок 36"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_4(message):
     keys = types.InlineKeyboardMarkup()
@@ -142,20 +138,20 @@ def library_4(message):
     bot.edit_message_text("Ступень 4 / Cаунд-дизайн", message.chat.id, message.message_id, reply_markup=keys)
 
 def library_41(message):
-    msg = "Урок 41"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_42(message):
-    msg = "Урок 42"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_43(message):
-    msg = "Урок 43"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def library_44(message):
-    msg = "Урок 44"
-    bot.edit_message_text(msg, message.chat.id, message.message_id, reply_markup=library_back_button)
+    msg = "Обучение начнется в ближайшее время. Все актуальные новости и объявления будут доступны в нашем паблике [ВКонтакте](https://vk.com/leitmotiv_edu)"
+    bot.edit_message_text(msg, message.chat.id, message.message_id, parse_mode='Markdown', disable_web_page_preview=True, reply_markup=library_back_button)
 
 def start_materials(message, back=False):
     if back:
@@ -196,8 +192,6 @@ def callback_query(call):
         library_12(call.message)
     elif call.data == "library_13":
         library_13(call.message)
-    elif call.data == "library_14":
-        library_14(call.message)
     elif call.data == "library_2":
         library_2(call.message)
     elif call.data == "library_21":

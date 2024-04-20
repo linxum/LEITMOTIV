@@ -11,7 +11,6 @@ def get_main_menu():
     main_menu.row("Посоветуй нас")
     main_menu.row("Сдать задание")
     main_menu.row('Библиотека')
-    # main_menu.row("Расписание")
     main_menu.row('Исследования')
     main_menu.row("Обратная связь")
     return main_menu
@@ -20,8 +19,8 @@ def get_admin_menu():
     admin_menu = types.ReplyKeyboardMarkup(True, True)
     admin_menu.row('Отправить сообщение')
     admin_menu.row('Обратная связь*')
-    admin_menu.row('Статистика пользователей')
     admin_menu.row('Изменить опросы')
+    admin_menu.row('Удалить пользователя')
     admin_menu.row('Режим пользователя')
     return admin_menu
 

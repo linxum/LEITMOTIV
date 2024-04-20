@@ -2,12 +2,13 @@ from telebot import types
 
 import feedback
 import polls
-from teleAPI import bot, is_admin, cancel, is_subscribed, start
+from teleAPI import bot, is_admin, cancel, is_subscribed, start, is_login
 import keyboards
 import lesson
 import refer
 import broadcast_message
 import library
+import admin
 import begin_poll
 
 
@@ -53,46 +54,46 @@ def callback_query(call):
 @bot.message_handler(content_types=['text'])
 def com_text(message):
     if is_subscribed(message.from_user.id):
-        if message.text == "Проверить подписку":
+        if is_login(message.from_user.id):
+            if message.text == "Проверить подписку":
+                com_start(message)
+            elif message.text == "Обратная связь":
+                msg = bot.send_message(message.chat.id, "Обнаружили баг в боте или хотите предложить улучшения для курса? Пишите нам здесь!", reply_markup=keyboards.get_cancel_menu())
+                bot.register_next_step_handler(msg, feedback.send_feedback)
+            elif message.text == "Текущий урок":
+                lesson.current_lesson(message)
+            elif message.text == "Коллекция уроков":
+                library.start_library(message)
+            elif message.text == "Сдать задание":
+                lesson.home_work(message)
+            elif message.text == "Исследования":
+                polls.start_polls(message)
+            elif message.text == "Библиотека":
+                library.start_materials(message)
+            elif message.text == "Посоветуй нас":
+                refer.show(message)
+            elif message.text == "Отправить сообщение":
+                if is_admin(message.chat.id):
+                    broadcast_message.write_message(message)
+            elif message.text == "Обратная связь*":
+                if is_admin(message.chat.id):
+                    feedback.get(message)
+            elif message.text == "Изменить опросы":
+                if is_admin(message.chat.id):
+                    bot.send_message(message.chat.id, "Что вы хотите сделать?", reply_markup=keyboards.get_admin_polls_menu())
+            elif message.text == "Добавить опрос":
+                if is_admin(message.chat.id):
+                    polls.add_topic(message)
+            elif message.text == "Удалить опрос":
+                if is_admin(message.chat.id):
+                    bot.send_message(message.chat.id, "Что вы хотите удалить?", reply_markup=keyboards.get_delete_poll_menu())
+            elif message.text == "Удалить пользователя":
+                if is_admin(message.chat.id):
+                    admin.delete_user(message)
+            elif message.text == "Режим пользователя":
+                bot.send_message(message.chat.id, "Режим пользователя", reply_markup=keyboards.get_main_menu())
+        else:
             com_start(message)
-        elif message.text == "Обратная связь":
-            msg = bot.send_message(message.chat.id, "Обнаружили баг в боте или хотите предложить улучшения для курса? Пишите нам здесь!", reply_markup=keyboards.get_cancel_menu())
-            bot.register_next_step_handler(msg, feedback.send_feedback)
-        elif message.text == "Текущий урок":
-            lesson.current_lesson(message)
-        elif message.text == "Коллекция уроков":
-            library.start_library(message)
-        elif message.text == "Сдать задание":
-            lesson.home_work(message)
-        elif message.text == "Исследования":
-            polls.start_polls(message)
-        elif message.text == "Расписание":
-            bot.send_message(message.chat.id, "Расписание")
-        elif message.text == "Библиотека":
-            library.start_materials(message)
-        elif message.text == "Посоветуй нас":
-            refer.show(message)
-        elif message.text == "Отправить сообщение":
-            if is_admin(message.chat.id):
-                broadcast_message.write_message(message)
-        elif message.text == "Обратная связь*":
-            if is_admin(message.chat.id):
-                feedback.get(message)
-        elif message.text == "Статистика пользователей":
-            if is_admin(message.chat.id):
-                begin_poll.print_user(message)
-        elif message.text == "Изменить опросы":
-            if is_admin(message.chat.id):
-                bot.send_message(message.chat.id, "Что вы хотите сделать?", reply_markup=keyboards.get_admin_polls_menu())
-        elif message.text == "Добавить опрос":
-            if is_admin(message.chat.id):
-                polls.add_topic(message)
-        elif message.text == "Удалить опрос":
-            if is_admin(message.chat.id):
-                bot.send_message(message.chat.id, "Что вы хотите удалить?", reply_markup=keyboards.get_delete_poll_menu())
-        elif message.text == "Режим пользователя":
-            bot.send_message(message.chat.id, "Режим пользователя", reply_markup=keyboards.get_main_menu())
-
     else:
         com_start(message)
 

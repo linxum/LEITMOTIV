@@ -18,7 +18,6 @@ def get_main_menu():
     main_menu.row("Посоветуй нас")
     main_menu.row("Сдать задание")
     main_menu.row('Библиотека')
-    # main_menu.row("Расписание")
     main_menu.row('Исследования')
     main_menu.row("Обратная связь")
     return main_menu
@@ -58,3 +57,8 @@ def is_subscribed(user_id, chat_id = "@leitmotiv_edu"):
     except telebot.apihelper.ApiTelegramException as e:
         if e.result_json['description'] == 'Bad Request: user not found':
             return False
+
+def is_login(user_id):
+    cursor = conn.cursor()
+    cursor.execute("""SELECT user_id FROM users WHERE user_id = %s;""", (str(user_id),))
+    return True if cursor.fetchone() else False
